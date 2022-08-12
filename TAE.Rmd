@@ -119,3 +119,26 @@ ggplot(Analisis_Genero, aes(x=`Genero`,y=`Numero de estudiantes`,fill=`Genero`))
   facet_wrap(~`Carrera depurada`, scales = "free_y")
   
 ```
+
+
+
+NIVEL DE AVANCE
+```{r}
+Avance_Analisis<-base_depurada %>%
+  group_by(`Semestre depurado`)%>%
+  filter(!`Semestre depurado`=='N/A')%>%
+  summarise(`Numero de estudiantes` = n())%>%
+  mutate(`Semestre depurado`=as.integer(`Semestre depurado`))%>%
+  arrange(`Semestre depurado`)
+  
+```
+
+```{r Avance Grafico}
+ggplot(Avance_Analisis, aes(x=`Semestre depurado`,y=`Numero de estudiantes`)) +
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  geom_hline(aes(yintercept = mean(`Numero de estudiantes`)), col = "red")+
+  scale_x_discrete(limits=2:11)+
+  scale_y_discrete(limits=0:10)
+  
+```
