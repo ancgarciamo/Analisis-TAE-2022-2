@@ -7,11 +7,11 @@ La mayor distribucion de estudiantes que proporcionaron sus datos el martes 9 de
 ![](https://github.com/ancgarciamo/Analisis-TAE-2022-2/blob/main/00000b.png)
 ![](https://github.com/ancgarciamo/Analisis-TAE-2022-2/blob/main/000009.png)
 
-Si analizamos por genero , existen casi una totalidad de estudiantes masculinos , siendo muy pocos las estudiantes de genero femenino , aunque la proporcion es mas igualitaria en la carrera de Estadistica.
+Si analizamos por genero , existen casi una totalidad de estudiantes masculinos , siendo muy pocas las estudiantes de genero femenino , aunque la proporcion es mas igualitaria en la carrera de Estadistica.
 
 ![](https://github.com/ancgarciamo/Analisis-TAE-2022-2/blob/main/0000085.png)
 
-## Tipo de Sueño
+## Tipo de Sueño profesional
 
 La mayoria de las personas se decanta por trabajar o aprender en temas relacionados al analisis o la ciencia de datos, como segunda opcion relevante estan las personas que estan interesadas en un sueño profesional en las areas de programacion o desarrollo de software.
 
