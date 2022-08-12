@@ -22,3 +22,9 @@ La mayoria de las personas se decanta por trabajar o aprender en temas relaciona
 La mayoria de los hobbies que son los predominantes en los estudiantes que participaron en este reto son Deportes y/o Actividad fisica , Lectura/Escritura  y Videojuegos , estos son los que tienen una frecuencia considerable comparado con otros tipos de hobbies.
 
 ![](https://github.com/ancgarciamo/Analisis-TAE-2022-2/blob/main/000005.png)
+
+## Nivel de Avance
+
+Este resultado nos muestra que las personas que tienden a inscribir esta materia son de semestres avanzados, por ejemplo noveno semestre que es el nivel de avance con mayor frecuencia.
+
+![](https://github.com/ancgarciamo/Analisis-TAE-2022-2/blob/main/000003.png)
