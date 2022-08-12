@@ -1,0 +1,121 @@
+---
+title: "Analisis Descriptivo"
+author: "Andres Garcia"
+date: "9/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r ignorar advertencias }
+options(warn=-1)
+```
+
+```{r Importacion de librerias  ,results='hide', message=FALSE, warning=FALSE}
+library(dplyr,warn.conflicts = FALSE)
+library(tidyr,warn.conflicts = FALSE)
+library(tidyverse,warn.conflicts = FALSE)
+library(lubridate,warn.conflicts = FALSE)
+library(writexl)
+library(readxl)
+options(dplyr.summarise.inform = FALSE)
+library(plotrix)
+```
+
+
+LECTURA DE DATOS
+
+```{r Lectura de la base de datos}
+Base_de_datos <- read_excel("TAE.xlsx")
+
+```
+
+
+```{r seleccion de variables}
+base_depurada<-Base_de_datos%>%
+  select(`Nombre Completo`,`Carrera depurada`,`Semestre depurado`,`Tipo de Hobby`,`Tipo de sueño`,Genero)
+```
+
+CARRERA 
+
+```{r Filtro por carrera}
+Carrera_Analisis<-base_depurada %>%
+  group_by(`Carrera depurada`)%>%
+  summarise(`Numero de estudiantes` = n())
+```
+
+```{r}
+Nombre_programa <- paste("# Estudiantes:",Carrera_Analisis$`Numero de estudiantes`, "|",round(Carrera_Analisis$`Numero de estudiantes`/sum(Carrera_Analisis$`Numero de estudiantes`)*100),"%")
+pie(Carrera_Analisis$`Numero de estudiantes`,labels=Nombre_programa,col = rainbow(length(Carrera_Analisis$`Carrera depurada`)))
+```
+```{r}
+plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
+legend("top", Carrera_Analisis$`Carrera depurada`, cex = 0.8,
+       fill = rainbow(length(Carrera_Analisis$`Numero de estudiantes`)))
+```
+
+
+TIPO DE SUEÑO 
+
+```{r}
+Sueño_Analisis<-base_depurada %>%
+  group_by(`Tipo de sueño`)%>%
+  summarise(`Numero de estudiantes` = n())
+  
+```
+
+
+```{r Sueño Grafico}
+ggplot(Sueño_Analisis, aes(x=`Tipo de sueño`,y=`Numero de estudiantes`,fill = `Tipo de sueño`)) +
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 0))+
+  scale_y_discrete(limits=0:20)+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+  
+```
+
+
+
+TIPO DE HOBBY 
+```{r}
+Hobby_Analisis<-base_depurada %>%
+  group_by(`Tipo de Hobby`)%>%
+  summarise(`Numero de estudiantes` = n())
+  
+```
+
+
+
+
+```{r Hobby Grafico}
+ggplot(Hobby_Analisis, aes(x=`Tipo de Hobby`,y=`Numero de estudiantes`,fill = `Tipo de Hobby`)) +
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 0))+
+  scale_y_discrete(limits=0:20)+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+  
+```
+
+ANALISIS DE GENERO POR CARRERA
+
+
+```{r}
+Analisis_Genero<-base_depurada %>%
+  group_by(Genero,`Carrera depurada`)%>%
+  summarise(`Numero de estudiantes` = n())%>%
+  mutate(`Numero de estudiantes`=as.integer(`Numero de estudiantes`))
+```
+
+```{r Genero Grafico}
+ggplot(Analisis_Genero, aes(x=`Genero`,y=`Numero de estudiantes`,fill=`Genero`)) +
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 0))+
+  facet_wrap(~`Carrera depurada`, scales = "free_y")
+  
+```
